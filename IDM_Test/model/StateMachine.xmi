@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iDM_Test:StateMachine
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:iDM_Test="http://www.example.org/iDM_Test"
+    xsi:schemaLocation="http://www.example.org/iDM_Test iDM_Test.ecore">
+  <states name="Open"
+      outgoing="//@transition.0"
+      incomming="//@transition.1"/>
+  <states name="Close"
+      outgoing="//@transition.1"
+      incomming="//@transition.0"/>
+  <transition
+      name="switch up"
+      to="//@states.0"
+      from="//@states.1"/>
+  <transition
+      name="switch off"
+      to="//@states.1"
+      from="//@states.0"/>
+</iDM_Test:StateMachine>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/IDM_Test/src-gen" creationIcons="false" editDirectory="/IDM_Test.edit/src-gen"
+    editorDirectory="/IDM_Test.editor/src-gen" modelPluginID="IDM_Test" modelName="IDM_Test"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>iDM_Test.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="IDM_Test" disposableProviderFactory="true" ecorePackage="iDM_Test.ecore#/">
+    <genClasses ecoreClass="iDM_Test.ecore#//StateMachine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iDM_Test.ecore#//StateMachine/name"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference iDM_Test.ecore#//StateMachine/states"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference iDM_Test.ecore#//StateMachine/transition"/>
+    </genClasses>
+    <genClasses ecoreClass="iDM_Test.ecore#//State">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iDM_Test.ecore#//State/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iDM_Test.ecore#//State/outgoing"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iDM_Test.ecore#//State/incomming"/>
+    </genClasses>
+    <genClasses ecoreClass="iDM_Test.ecore#//Transition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iDM_Test.ecore#//Transition/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iDM_Test.ecore#//Transition/to"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iDM_Test.ecore#//Transition/from"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

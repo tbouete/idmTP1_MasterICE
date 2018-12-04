@@ -1,0 +1,8 @@
+./IDM_Test/src-gen
+./IDM_Test.edit/src-gen
+./IDM_Test.editor/src-gen
+./org.xtext.example.mydsl/src-gen
+./org.xtext.example.mydsl.ide/src-gen
+./org.xtext.example.mydsl.test/src-gen
+./org.xtext.example.mydsl.ui/src-gen
+./org.xtext.example.mydsl.ui.test/src-gen
