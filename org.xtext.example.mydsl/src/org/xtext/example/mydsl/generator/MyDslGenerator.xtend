@@ -21,16 +21,15 @@ class MyDslGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		var stateMachine = resource.contents.get(0) as StateMachine
-		fsa.generateFile("/stateMachine/"+stateMachine.name.toFirstUpper+".java",stateMachine.createStateMachineClass)
-		fsa.generateFile("/state/State.java",createStateClass)
+		fsa.generateFile(stateMachine.name.toFirstUpper+".java",stateMachine.createStateMachineClass)
+		fsa.generateFile("State.java",createStateClass)
 		stateMachine.states.forEach[s | fsa.generateFile("/state/" + s.name.toFirstUpper +".java",s.createStateImplClass)]
-		fsa.generateFile("/state/Transition.java",createTransitionClass)
+		fsa.generateFile("Transition.java",createTransitionClass)
 	}
 	
 	def createStateMachineClass(StateMachine machine){
 		'''
-		package src.stateMachine;
-		import src.state.*;
+		import State;
 		
 		public class «machine.name.toFirstUpper» {
 			

@@ -3,19 +3,11 @@
  */
 package org.xtext.example.mydsl.generator;
 
-import iDM_Test.State;
-import iDM_Test.StateMachine;
-import iDM_Test.Transition;
-import java.util.List;
-import java.util.function.Consumer;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -26,65 +18,26 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 public class MyDslGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    EObject _get = resource.getContents().get(0);
-    StateMachine stateMachine = ((StateMachine) _get);
-    fsa.generateFile("/stateMachine/StateMachine.java", this.createStateMachineClass(stateMachine));
-    fsa.generateFile("/state/State.java", this.createStateClass());
-    final Consumer<State> _function = (State s) -> {
-      String _firstUpper = StringExtensions.toFirstUpper(s.getName());
-      String _plus = ("/state/" + _firstUpper);
-      String _plus_1 = (_plus + ".java");
-      fsa.generateFile(_plus_1, this.createStateImplClass(s));
-    };
-    stateMachine.getStates().forEach(_function);
-    fsa.generateFile("/state/Transition.java", this.createTransitionClass());
+    throw new Error("Unresolved compilation problems:"
+      + "\nStateMachine cannot be resolved to a type."
+      + "\nThe method or field name is undefined for the type Object"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\nThe method createStateImplClass(State) from the type MyDslGenerator refers to the missing type State"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\n+ cannot be resolved"
+      + "\ncreateStateMachineClass cannot be resolved"
+      + "\nstates cannot be resolved"
+      + "\nforEach cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved");
   }
   
-  public CharSequence createStateMachineClass(final StateMachine machine) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package src.stateMachine;");
-    _builder.newLine();
-    _builder.append("import src.state.*;");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("public class ");
-    String _name = machine.getName();
-    _builder.append(_name);
-    _builder.append(" {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("private State currentState;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    String _name_1 = machine.getName();
-    _builder.append(_name_1, "\t");
-    _builder.append("(){");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("this.currentState = new State();");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public void switchState(State newState){");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("this.currentState = newState;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
+  public CharSequence createStateMachineClass(final /* StateMachine */Object machine) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved");
   }
   
   public CharSequence createTransitionClass() {
@@ -106,10 +59,37 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("public Transition(String name){");
+    _builder.append("public Transition(String name, State toState, State fromState){");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("this.name = name;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.to = toState;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.from = fromState;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public State getTo(){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return this.to;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public State getFrom(){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return this.from;");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
@@ -139,6 +119,12 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\t");
     _builder.append("public State(){");
     _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.outgoings = new ArrayList<Transition>();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.incomings = new ArrayList<Transition>();");
+    _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
@@ -162,44 +148,61 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void addOutgoing(State s){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.outgoings.add(s);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void addIncoming(State s){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.incomings.add(s);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public List<Transition> getIncomings(){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return this.incomings;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public List<Transition> getOutgoings(){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return this.outgoings");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
     _builder.append("}");
     _builder.newLine();
     return _builder;
   }
   
-  public CharSequence createStateImplClass(final State s) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package src.state;");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("public class ");
-    String _firstUpper = StringExtensions.toFirstUpper(s.getName());
-    _builder.append(_firstUpper);
-    _builder.append(" extends State {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("public ");
-    String _firstUpper_1 = StringExtensions.toFirstUpper(s.getName());
-    _builder.append(_firstUpper_1, "\t");
-    _builder.append("(){");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("this.outgoings=");
-    List<Transition> _list = IterableExtensions.<Transition>toList(s.getOutgoing());
-    _builder.append(_list, "\t\t");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("this.incomings=");
-    List<Transition> _list_1 = IterableExtensions.<Transition>toList(s.getIncomming());
-    _builder.append(_list_1, "\t\t");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
+  public CharSequence createStateImplClass(final /* State */Object s) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\ntoFirstUpper cannot be resolved"
+      + "\noutgoing cannot be resolved"
+      + "\nincomming cannot be resolved");
   }
 }

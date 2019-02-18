@@ -21,22 +21,21 @@ class MyDslGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		var stateMachine = resource.contents.get(0) as StateMachine
-		fsa.generateFile("/stateMachine/StateMachine.java",stateMachine.createStateMachineClass)
-		fsa.generateFile("/state/State.java",createStateClass)
+		fsa.generateFile(stateMachine.name.toFirstUpper+".java",stateMachine.createStateMachineClass)
+		fsa.generateFile("State.java",createStateClass)
 		stateMachine.states.forEach[s | fsa.generateFile("/state/" + s.name.toFirstUpper +".java",s.createStateImplClass)]
-		fsa.generateFile("/state/Transition.java",createTransitionClass)
+		fsa.generateFile("Transition.java",createTransitionClass)
 	}
 	
 	def createStateMachineClass(StateMachine machine){
 		'''
-		package src.stateMachine;
-		import src.state.*;
+		import State;
 		
-		public class «machine.name» {
+		public class «machine.name.toFirstUpper» {
 			
 			private State currentState;
 			
-			public «machine.name»(){
+			public «machine.name.toFirstUpper»(){
 				this.currentState = new State();
 			}
 			
@@ -57,8 +56,18 @@ class MyDslGenerator extends AbstractGenerator {
 			private State to;
 			private State from;
 			
-			public Transition(String name){
+			public Transition(String name, State toState, State fromState){
 				this.name = name;
+				this.to = toState;
+				this.from = fromState;
+			}
+			
+			public State getTo(){
+				return this.to;
+			}
+		
+			public State getFrom(){
+				return this.from;
 			}
 		}
 		'''
@@ -74,6 +83,8 @@ class MyDslGenerator extends AbstractGenerator {
 			private List<Transition> incomings;
 			
 			public State(){
+				this.outgoings = new ArrayList<Transition>();
+				this.incomings = new ArrayList<Transition>();
 			}
 			
 			public boolean canGoTo(State s){
@@ -81,6 +92,22 @@ class MyDslGenerator extends AbstractGenerator {
 					return true;
 				}
 				return false;
+			}
+			
+			public void addOutgoing(State s){
+				this.outgoings.add(s);
+			}
+			
+			public void addIncoming(State s){
+				this.incomings.add(s);
+			}
+			
+			public List<Transition> getIncomings(){
+				return this.incomings;
+			}
+		
+			public List<Transition> getOutgoings(){
+				return this.outgoings
 			}
 		}
 		'''
@@ -92,8 +119,8 @@ class MyDslGenerator extends AbstractGenerator {
 		
 		public class «s.name.toFirstUpper» extends State {
 			public «s.name.toFirstUpper»(){
-				this.outgoings=«s.outgoing.toList»;
-				this.incomings=«s.incomming.toList»;
+				this.outgoings=«s.outgoing»;
+				this.incomings=«s.incomming»;
 			}
 		}
 		'''

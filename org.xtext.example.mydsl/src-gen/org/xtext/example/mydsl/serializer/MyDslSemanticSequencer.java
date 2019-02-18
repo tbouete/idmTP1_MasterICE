@@ -4,10 +4,6 @@
 package org.xtext.example.mydsl.serializer;
 
 import com.google.inject.Inject;
-import iDM_Test.IDM_TestPackage;
-import iDM_Test.State;
-import iDM_Test.StateMachine;
-import iDM_Test.Transition;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;

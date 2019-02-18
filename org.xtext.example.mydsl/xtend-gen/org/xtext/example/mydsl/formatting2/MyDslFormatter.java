@@ -4,11 +4,7 @@
 package org.xtext.example.mydsl.formatting2;
 
 import com.google.inject.Inject;
-import iDM_Test.State;
-import iDM_Test.StateMachine;
-import iDM_Test.Transition;
 import java.util.Arrays;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.AbstractFormatter2;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
@@ -22,29 +18,28 @@ public class MyDslFormatter extends AbstractFormatter2 {
   @Extension
   private MyDslGrammarAccess _myDslGrammarAccess;
   
-  protected void _format(final StateMachine stateMachine, @Extension final IFormattableDocument document) {
-    EList<State> _states = stateMachine.getStates();
-    for (final State state : _states) {
-      document.<State>format(state);
-    }
-    EList<Transition> _transition = stateMachine.getTransition();
-    for (final Transition transition : _transition) {
-      document.<Transition>format(transition);
-    }
+  protected void _format(final /* StateMachine */Object stateMachine, @Extension final IFormattableDocument document) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nState cannot be resolved to a type."
+      + "\nTransition cannot be resolved to a type."
+      + "\ngetStates cannot be resolved"
+      + "\nformat cannot be resolved"
+      + "\ngetTransition cannot be resolved"
+      + "\nformat cannot be resolved");
   }
   
   public void format(final Object stateMachine, final IFormattableDocument document) {
     if (stateMachine instanceof XtextResource) {
       _format((XtextResource)stateMachine, document);
       return;
-    } else if (stateMachine instanceof StateMachine) {
-      _format((StateMachine)stateMachine, document);
-      return;
     } else if (stateMachine instanceof EObject) {
       _format((EObject)stateMachine, document);
       return;
     } else if (stateMachine == null) {
       _format((Void)null, document);
+      return;
+    } else if (stateMachine != null) {
+      _format(stateMachine, document);
       return;
     } else if (stateMachine != null) {
       _format(stateMachine, document);
