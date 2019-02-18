@@ -12,10 +12,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1"
-        eType="#//Transition" eOpposite="#//Transition/to"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="incomming" upperBound="-1"
-        eType="#//Transition" eOpposite="#//Transition/from"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" lowerBound="1"
+        upperBound="-1" eType="#//Transition" eOpposite="#//Transition/to"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomming" lowerBound="1"
+        upperBound="-1" eType="#//Transition" eOpposite="#//Transition/from"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

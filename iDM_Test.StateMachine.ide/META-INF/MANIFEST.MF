@@ -8,5 +8,9 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: iDM_Test.StateMachine,
  IDM_Test,
  org.eclipse.xtext.ide,
- org.eclipse.xtext.xbase.ide
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: iDM_Test.ide.contentassist.antlr,
+ iDM_Test.ide.contentassist.antlr.internal
+
