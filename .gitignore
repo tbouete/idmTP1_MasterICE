@@ -6,3 +6,12 @@
 ./org.xtext.example.mydsl.test/src-gen
 ./org.xtext.example.mydsl.ui/src-gen
 ./org.xtext.example.mydsl.ui.test/src-gen
+
+./IDM_Test/bin
+./IDM_Test.edit/bin
+./IDM_Test.editor/bin
+./org.xtext.example.mydsl/bin
+./org.xtext.example.mydsl.ide/bin
+./org.xtext.example.mydsl.test/bin
+./org.xtext.example.mydsl.ui/bin
+./org.xtext.example.mydsl.ui.test/bin
