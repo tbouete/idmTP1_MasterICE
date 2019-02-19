@@ -8,8 +8,7 @@ StateMachine returns StateMachine:
 	{StateMachine}
 	'StateMachine'
 	name=EString
-		('state' states+=State) |
-		('transition' transition+=Transition)
+		(states+=State | transition+=Transition)*
 		('init' init = State);
 
 EString returns ecore::EString:
@@ -17,7 +16,7 @@ EString returns ecore::EString:
 
 State returns State:
 	{State}
-	name=EString;
+	'state' name=EString;
 
 Transition returns Transition:
-		('open' | 'close') from=[State|EString]'->' to=[State|EString];
+		'transition' name=EString from=[State|EString]'->' to=[State|EString];

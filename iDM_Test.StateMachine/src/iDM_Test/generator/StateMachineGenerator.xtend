@@ -9,6 +9,8 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import iDM_Test.StateMachine
 import iDM_Test.State
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.Step
 
 /**
  * Generates code from your model files on save.
@@ -21,10 +23,8 @@ class StateMachineGenerator extends AbstractGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		this.stateMachine = resource.contents.get(0) as StateMachine
-		fsa.generateFile("StateManager.java", stateManagerClass)
 		fsa.generateFile(stateMachine.name.toFirstUpper() + ".java", stateMachineClass)
 		fsa.generateFile("State.java", stateClass)
-		fsa.generateFile("Transition.java", transitionClass)
 	}
 	
 	def getStateMachineClass() {
@@ -116,60 +116,14 @@ class StateMachineGenerator extends AbstractGenerator {
 		}
 		'''
 	}
+
+}
+
 	
-	
-	
-	def transitionClass() {
-		'''
-		improt state.*
-		import java.util.ArrayList;
-		import java.util.List;
-		
-		public class Transition {
+@Aspect(className=State)
+class StateAspect{
+	@Step
+	def static void step(String inputString){
 			
-			private name;
-			private List<State> from;
-			private List<State> to;
-			
-			public Transition(String name){
-				this.name = name;
-				this.from = new ArrayList<State>();
-				this.to =   new ArrayList<State>();
-			}
-			
-			public String getName(){
-				return this.name;
-			}
-			
-			public List<Transition> getFrom(){
-				return this.from;
-			}
-			
-			public void addFrom(Transition newFrom) {
-				this.from.add(newFrom);
-			}
-			
-			public List<Transition> getTo(){
-				return this.to;
-			}
-			
-			public void addTo(Transition newTo) {
-				this.to.add(newTo);
-			}
-		}
-		'''
-	}
-	
-	
-	
-	def stateManagerClass() {
-		'''
-		public static void main(String[] args){
-			//create and add States
-			//create and add Transitions
-			//create StateMachine
-			//runStateMachine()
-		}
-		'''
 	}
 }
