@@ -62,7 +62,7 @@ public interface Transition extends EObject {
 	 * @see #setTo(State)
 	 * @see iDM_Test.IDM_TestPackage#getTransition_To()
 	 * @see iDM_Test.State#getOutgoing
-	 * @model opposite="outgoing" required="true"
+	 * @model opposite="outgoing"
 	 * @generated
 	 */
 	State getTo();
@@ -90,7 +90,7 @@ public interface Transition extends EObject {
 	 * @see #setFrom(State)
 	 * @see iDM_Test.IDM_TestPackage#getTransition_From()
 	 * @see iDM_Test.State#getIncomming
-	 * @model opposite="incomming" required="true"
+	 * @model opposite="incomming"
 	 * @generated
 	 */
 	State getFrom();

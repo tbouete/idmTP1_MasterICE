@@ -11,6 +11,7 @@ import iDM_Test.StateMachine
 import iDM_Test.State
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.Step
+import iDM_Test.Transition
 
 /**
  * Generates code from your model files on save.
@@ -121,9 +122,39 @@ class StateMachineGenerator extends AbstractGenerator {
 
 	
 @Aspect(className=State)
-class StateAspect{
+class StateAspect {
 	@Step
-	def static void step(String inputString){
-			
+	def public void step(String inputString) {
+		// Get the valid transitions	
+		val validTransitions = _self.outgoing.filter[t|inputString.compareTo(t.trigger) == 0]
+
+		if (validTransitions.empty) {
+			// just copy the token to the output buffer
+			_self.fsm.outputBuffer.enqueue(inputString)
+		}
+
+		if (validTransitions.size > 1) {
+			throw new Exception("Non Determinism")
+		}
+
+		// Fire transition first transition (could be random%VT.size)
+		if (validTransitions.size > 0) {
+			validTransitions.get(0).fire
+			return
+		}
+		return
+
+	}
+}
+    
+@Aspect(className=Transition)
+class TransitionAspect {
+	@Step
+	def public void fire() {
+		println("Firing " + _self.name + " and entering " + _self.to.name)
+		val fsm = _self.from.fsm
+		fsm.currentState = _self.to
+		fsm.outputBuffer.enqueue(_self.action)
+		fsm.consummedString = fsm.consummedString + fsm.underProcessTrigger
 	}
 }

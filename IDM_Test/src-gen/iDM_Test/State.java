@@ -64,7 +64,7 @@ public interface State extends EObject {
 	 * @return the value of the '<em>Outgoing</em>' reference list.
 	 * @see iDM_Test.IDM_TestPackage#getState_Outgoing()
 	 * @see iDM_Test.Transition#getTo
-	 * @model opposite="to"
+	 * @model opposite="to" required="true"
 	 * @generated
 	 */
 	EList<Transition> getOutgoing();
@@ -82,7 +82,7 @@ public interface State extends EObject {
 	 * @return the value of the '<em>Incomming</em>' reference list.
 	 * @see iDM_Test.IDM_TestPackage#getState_Incomming()
 	 * @see iDM_Test.Transition#getFrom
-	 * @model opposite="from"
+	 * @model opposite="from" required="true"
 	 * @generated
 	 */
 	EList<Transition> getIncomming();

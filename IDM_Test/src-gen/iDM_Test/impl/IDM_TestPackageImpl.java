@@ -147,6 +147,15 @@ public class IDM_TestPackageImpl extends EPackageImpl implements IDM_TestPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getStateMachine_Init() {
+		return (EReference) stateMachineEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getState() {
 		return stateEClass;
 	}
@@ -247,6 +256,7 @@ public class IDM_TestPackageImpl extends EPackageImpl implements IDM_TestPackage
 		createEAttribute(stateMachineEClass, STATE_MACHINE__NAME);
 		createEReference(stateMachineEClass, STATE_MACHINE__STATES);
 		createEReference(stateMachineEClass, STATE_MACHINE__TRANSITION);
+		createEReference(stateMachineEClass, STATE_MACHINE__INIT);
 
 		stateEClass = createEClass(STATE);
 		createEAttribute(stateEClass, STATE__NAME);
@@ -300,14 +310,17 @@ public class IDM_TestPackageImpl extends EPackageImpl implements IDM_TestPackage
 		initEReference(getStateMachine_Transition(), this.getTransition(), null, "transition", null, 0, -1,
 				StateMachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStateMachine_Init(), this.getState(), null, "init", null, 0, 1, StateMachine.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 0, 1, State.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getState_Outgoing(), this.getTransition(), this.getTransition_To(), "outgoing", null, 0, -1,
+		initEReference(getState_Outgoing(), this.getTransition(), this.getTransition_To(), "outgoing", null, 1, -1,
 				State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getState_Incomming(), this.getTransition(), this.getTransition_From(), "incomming", null, 0, -1,
+		initEReference(getState_Incomming(), this.getTransition(), this.getTransition_From(), "incomming", null, 1, -1,
 				State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -315,10 +328,10 @@ public class IDM_TestPackageImpl extends EPackageImpl implements IDM_TestPackage
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTransition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transition.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_To(), this.getState(), this.getState_Outgoing(), "to", null, 1, 1,
+		initEReference(getTransition_To(), this.getState(), this.getState_Outgoing(), "to", null, 0, 1,
 				Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_From(), this.getState(), this.getState_Incomming(), "from", null, 1, 1,
+		initEReference(getTransition_From(), this.getState(), this.getState_Incomming(), "from", null, 0, 1,
 				Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

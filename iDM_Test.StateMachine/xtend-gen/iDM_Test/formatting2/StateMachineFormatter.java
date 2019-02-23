@@ -4,9 +4,12 @@
 package iDM_Test.formatting2;
 
 import com.google.inject.Inject;
+import iDM_Test.State;
 import iDM_Test.StateMachine;
+import iDM_Test.Transition;
 import iDM_Test.services.StateMachineGrammarAccess;
 import java.util.Arrays;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.AbstractFormatter2;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
@@ -20,9 +23,15 @@ public class StateMachineFormatter extends AbstractFormatter2 {
   private StateMachineGrammarAccess _stateMachineGrammarAccess;
   
   protected void _format(final StateMachine stateMachine, @Extension final IFormattableDocument document) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field getInit is undefined for the type StateMachine"
-      + "\nformat cannot be resolved");
+    EList<State> _states = stateMachine.getStates();
+    for (final State state : _states) {
+      document.<State>format(state);
+    }
+    EList<Transition> _transition = stateMachine.getTransition();
+    for (final Transition transition : _transition) {
+      document.<Transition>format(transition);
+    }
+    document.<State>format(stateMachine.getInit());
   }
   
   public void format(final Object stateMachine, final IFormattableDocument document) {

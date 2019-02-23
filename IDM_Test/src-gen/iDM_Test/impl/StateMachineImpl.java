@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link iDM_Test.impl.StateMachineImpl#getName <em>Name</em>}</li>
  *   <li>{@link iDM_Test.impl.StateMachineImpl#getStates <em>States</em>}</li>
  *   <li>{@link iDM_Test.impl.StateMachineImpl#getTransition <em>Transition</em>}</li>
+ *   <li>{@link iDM_Test.impl.StateMachineImpl#getInit <em>Init</em>}</li>
  * </ul>
  *
  * @generated
@@ -78,6 +79,16 @@ public class StateMachineImpl extends MinimalEObjectImpl.Container implements St
 	 * @ordered
 	 */
 	protected EList<Transition> transition;
+
+	/**
+	 * The cached value of the '{@link #getInit() <em>Init</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInit()
+	 * @generated
+	 * @ordered
+	 */
+	protected State init;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -149,6 +160,45 @@ public class StateMachineImpl extends MinimalEObjectImpl.Container implements St
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public State getInit() {
+		if (init != null && init.eIsProxy()) {
+			InternalEObject oldInit = (InternalEObject) init;
+			init = (State) eResolveProxy(oldInit);
+			if (init != oldInit) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, IDM_TestPackage.STATE_MACHINE__INIT,
+							oldInit, init));
+			}
+		}
+		return init;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public State basicGetInit() {
+		return init;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInit(State newInit) {
+		State oldInit = init;
+		init = newInit;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, IDM_TestPackage.STATE_MACHINE__INIT, oldInit, init));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -174,6 +224,10 @@ public class StateMachineImpl extends MinimalEObjectImpl.Container implements St
 			return getStates();
 		case IDM_TestPackage.STATE_MACHINE__TRANSITION:
 			return getTransition();
+		case IDM_TestPackage.STATE_MACHINE__INIT:
+			if (resolve)
+				return getInit();
+			return basicGetInit();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -198,6 +252,9 @@ public class StateMachineImpl extends MinimalEObjectImpl.Container implements St
 			getTransition().clear();
 			getTransition().addAll((Collection<? extends Transition>) newValue);
 			return;
+		case IDM_TestPackage.STATE_MACHINE__INIT:
+			setInit((State) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -219,6 +276,9 @@ public class StateMachineImpl extends MinimalEObjectImpl.Container implements St
 		case IDM_TestPackage.STATE_MACHINE__TRANSITION:
 			getTransition().clear();
 			return;
+		case IDM_TestPackage.STATE_MACHINE__INIT:
+			setInit((State) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -237,6 +297,8 @@ public class StateMachineImpl extends MinimalEObjectImpl.Container implements St
 			return states != null && !states.isEmpty();
 		case IDM_TestPackage.STATE_MACHINE__TRANSITION:
 			return transition != null && !transition.isEmpty();
+		case IDM_TestPackage.STATE_MACHINE__INIT:
+			return init != null;
 		}
 		return super.eIsSet(featureID);
 	}

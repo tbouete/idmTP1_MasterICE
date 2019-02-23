@@ -94,13 +94,22 @@ public interface IDM_TestPackage extends EPackage {
 	int STATE_MACHINE__TRANSITION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Init</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_MACHINE__INIT = 3;
+
+	/**
 	 * The number of structural features of the '<em>State Machine</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_MACHINE_FEATURE_COUNT = 3;
+	int STATE_MACHINE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>State Machine</em>' class.
@@ -265,6 +274,17 @@ public interface IDM_TestPackage extends EPackage {
 	EReference getStateMachine_Transition();
 
 	/**
+	 * Returns the meta object for the reference '{@link iDM_Test.StateMachine#getInit <em>Init</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Init</em>'.
+	 * @see iDM_Test.StateMachine#getInit()
+	 * @see #getStateMachine()
+	 * @generated
+	 */
+	EReference getStateMachine_Init();
+
+	/**
 	 * Returns the meta object for class '{@link iDM_Test.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -406,6 +426,14 @@ public interface IDM_TestPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STATE_MACHINE__TRANSITION = eINSTANCE.getStateMachine_Transition();
+
+		/**
+		 * The meta object literal for the '<em><b>Init</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATE_MACHINE__INIT = eINSTANCE.getStateMachine_Init();
 
 		/**
 		 * The meta object literal for the '{@link iDM_Test.impl.StateImpl <em>State</em>}' class.

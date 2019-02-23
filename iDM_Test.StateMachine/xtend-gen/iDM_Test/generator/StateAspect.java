@@ -30,5 +30,11 @@ public class StateAspect {
   }
   
   protected static void _privk3_step(final StateAspectStateAspectProperties _self_, final State _self, final String inputString) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field trigger is undefined for the type Transition"
+      + "\nThe method or field fsm is undefined for the type State"
+      + "\nThe method or field fire is undefined for the type Transition"
+      + "\noutputBuffer cannot be resolved"
+      + "\nenqueue cannot be resolved");
   }
 }
