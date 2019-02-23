@@ -44,9 +44,13 @@ class StateMachineGenerator extends AbstractGenerator {
 			
 			public «stateMachine.name.toFirstUpper()»(State init) {
 				this.name = «stateMachine.name.toFirstUpper()»;
-				this.initState = init;
-				this.stateList = new ArrayList<State>();
-				this.transitionList = new ArrayList<Transition>();
+				this.initState = «stateMachine.init»;					
+						«FOR state : stateMachine.states»
+							this.states.add(new «state.name.toFirstUpper()»());
+						«ENDFOR»
+						«FOR transition : stateMachine.transition»
+							this.transition.add(new «transition.name.toFirstUpper()»());
+						«ENDFOR»
 			}
 			
 			public String getName(){

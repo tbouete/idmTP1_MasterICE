@@ -3,7 +3,10 @@
  */
 package iDM_Test.generator;
 
+import iDM_Test.State;
 import iDM_Test.StateMachine;
+import iDM_Test.Transition;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -76,14 +79,33 @@ public class StateMachineGenerator extends AbstractGenerator {
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("this.initState = init;");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("this.stateList = new ArrayList<State>();");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("this.transitionList = new ArrayList<Transition>();");
-    _builder.newLine();
+    _builder.append("this.initState = ");
+    State _init = this.stateMachine.getInit();
+    _builder.append(_init, "\t\t");
+    _builder.append(";\t\t\t\t\t");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<State> _states = this.stateMachine.getStates();
+      for(final State state : _states) {
+        _builder.append("\t\t\t\t");
+        _builder.append("this.states.add(new ");
+        String _firstUpper_3 = StringExtensions.toFirstUpper(state.getName());
+        _builder.append(_firstUpper_3, "\t\t\t\t");
+        _builder.append("());");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Transition> _transition = this.stateMachine.getTransition();
+      for(final Transition transition : _transition) {
+        _builder.append("\t\t\t\t");
+        _builder.append("this.transition.add(new ");
+        String _firstUpper_4 = StringExtensions.toFirstUpper(transition.getName());
+        _builder.append(_firstUpper_4, "\t\t\t\t");
+        _builder.append("());");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
